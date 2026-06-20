@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="郑维则（Weize Zheng）的双语个人网站：计算机科学、嵌入式 AI、计算机视觉与软件工程。"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <title>郑维则 · Weize Zheng</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="skip">跳至主要内容</a>
+
+    <header class="site-header" aria-label="Primary navigation">
+      <a class="wordmark" href="#top" aria-label="Back to top">
+        <span>WZ</span><i aria-hidden="true"></i>
+      </a>
+
+      <nav class="nav-links" aria-label="Page sections">
+        <a href="#profile" data-i18n="navProfile">简介</a>
+        <a href="#education" data-i18n="navEducation">教育</a>
+        <a href="#experience" data-i18n="navExperience">经历</a>
+        <a href="#projects" data-i18n="navProjects">项目</a>
+        <a href="#contact" data-i18n="navContact">联系</a>
+      </nav>
+
+      <div class="header-actions">
+        <a
+          class="github-link github-link--header"
+          href="https://github.com/W1chik2nd"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="GitHub – W1chik2nd"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M12 2.6a9.6 9.6 0 0 0-3 18.72c.48.09.66-.21.66-.46v-1.68c-2.7.59-3.27-1.15-3.27-1.15-.44-1.13-1.08-1.43-1.08-1.43-.88-.6.07-.59.07-.59.97.07 1.48 1 1.48 1 .87 1.48 2.27 1.05 2.83.8.09-.62.34-1.05.61-1.29-2.15-.24-4.42-1.08-4.42-4.74 0-1.05.38-1.9 1-2.57-.1-.25-.43-1.22.1-2.54 0 0 .81-.26 2.64.98A9.2 9.2 0 0 1 12 7.32a9.2 9.2 0 0 1 2.4.32c1.83-1.24 2.64-.98 2.64-.98.53 1.32.2 2.29.1 2.54.62.67 1 1.52 1 2.57 0 3.68-2.28 4.5-4.44 4.74.35.3.66.89.66 1.8v2.55c0 .25.18.55.67.46A9.6 9.6 0 0 0 12 2.6Z"
+            />
+          </svg>
+        </a>
+
+        <button class="language-switch" type="button" aria-label="Switch language">
+          <span class="language-option is-active" data-lang-option="zh">中</span>
+          <span class="language-divider" aria-hidden="true"></span>
+          <span class="language-option" data-lang-option="en">EN</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-meta reveal">
+          <span data-i18n="heroKicker">个人档案 / 2026</span>
+          <span data-i18n="heroLocation">上海 · 利兹</span>
+        </div>
+
+        <div class="hero-main">
+          <div class="hero-title-wrap">
+            <p class="hero-index reveal" aria-hidden="true">01</p>
+            <h1 id="hero-title" class="hero-title reveal">
+              <span data-i18n="firstName">维则</span>
+              <span data-i18n="lastName">郑</span>
+            </h1>
+            <p class="hero-roman reveal">Weize Zheng</p>
+          </div>
+
+          <div class="hero-intro reveal">
+            <p class="hero-status" data-i18n="heroStatus">利兹大学计算机科学本科在读</p>
+            <p class="hero-statement" data-i18n="heroStatement">
+              我对人工智能与软件工程方向的工作充满兴趣，希望把严谨的工程方法用于创造可靠、真正有用的产品。
+            </p>
+            <div class="hero-interests" aria-label="Personal interests">
+              <span data-i18n="interestTravel">旅行</span>
+              <span data-i18n="interestHiking">徒步</span>
+              <span data-i18n="interestPhotography">摄影</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-bottom">
+          <a class="scroll-cue reveal" href="#profile">
+            <span data-i18n="scroll">向下浏览</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 4v15M6.5 13.5 12 19l5.5-5.5" />
+            </svg>
+          </a>
+        </div>
+
+        <div class="hero-orbit" aria-hidden="true">
+          <span class="orbit-ring"></span>
+          <span class="orbit-dot"></span>
+          <span class="orbit-label">CS · AI · 26</span>
+        </div>
+      </section>
+
+      <section class="profile section" id="profile" aria-labelledby="profile-title">
+        <div class="section-rail reveal">
+          <span>02</span>
+          <span data-i18n="profileRail">简介</span>
+        </div>
+
+        <div class="profile-content">
+          <p class="eyebrow reveal" data-i18n="profileEyebrow">关于我</p>
+          <h2 id="profile-title" class="profile-title reveal" data-i18n="profileTitle">
+            在代码、硬件与真实世界之间，寻找最清晰的解法。
+          </h2>
+          <div class="profile-copy reveal">
+            <p data-i18n="profileBody">
+              我目前就读于利兹大学计算机科学专业。我的实践横跨 ARM 嵌入式平台上的实时目标跟踪、AI
+              语音识别原型，以及全栈航班预订系统。我喜欢把问题拆开、把团队组织起来，再让方案稳定地运行。
+            </p>
+            <div class="profile-facts" aria-label="Profile facts">
+              <div>
+                <span data-i18n="focusLabel">当前关注</span>
+                <strong data-i18n="focusValue">嵌入式 AI / 视觉</strong>
+              </div>
+              <div>
+                <span data-i18n="languagesLabel">语言</span>
+                <strong data-i18n="languagesValue">中文 / English</strong>
+              </div>
+              <div>
+                <span data-i18n="availableLabel">状态</span>
+                <strong data-i18n="availableValue">开放合作机会</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="education section" id="education" aria-labelledby="education-title">
+        <div class="education-lead reveal">
+          <span class="section-number">03</span>
+          <p class="eyebrow" data-i18n="educationEyebrow">教育背景</p>
+          <h2 id="education-title" data-i18n="educationTitle">持续学习，持续构建。</h2>
+        </div>
+
+        <div class="education-body">
+          <article class="education-record reveal">
+            <div class="record-date">2023—<span data-i18n="present">至今</span></div>
+            <div>
+              <div class="record-school">
+                <h3 data-i18n="leeds">利兹大学</h3>
+                <a
+                  class="university-identity"
+                  href="https://www.leeds.ac.uk/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="University of Leeds official website"
+                >
+                  <img src="./assets/leeds-mark.svg" alt="" />
+                  <span>University<br />of Leeds</span>
+                </a>
+              </div>
+              <p data-i18n="degree">计算机科学理学学士</p>
+              <p class="record-note" data-i18n="gpa">GPA 3.7 / 4.0 · 英国二等一学位水平</p>
+            </div>
+          </article>
+
+          <div class="course-field reveal">
+            <span data-i18n="courseLabel">课程选择</span>
+            <p data-i18n="courseList">
+              数据结构 · 算法 · 操作系统 · 计算机体系结构 · 并行计算 · 软件工程
+            </p>
+          </div>
+
+          <div class="skills-field reveal">
+            <span data-i18n="toolkitLabel">技术工具箱</span>
+            <ul aria-label="Technical skills">
+              <li>Python</li>
+              <li>C / C++</li>
+              <li>Kotlin</li>
+              <li>JavaScript</li>
+              <li>Node.js</li>
+              <li>PostgreSQL</li>
+              <li>Git</li>
+              <li>Linux</li>
+              <li>MATLAB</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="experience section" id="experience" aria-labelledby="experience-title">
+        <div class="section-heading reveal">
+          <div>
+            <span class="section-number">04</span>
+            <p class="eyebrow" data-i18n="experienceEyebrow">实践轨迹</p>
+          </div>
+          <h2 id="experience-title" data-i18n="experienceTitle">工作与指导经历</h2>
+        </div>
+
+        <div class="timeline" id="experienceTimeline"></div>
+      </section>
+
+      <section class="projects section" id="projects" aria-labelledby="projects-title">
+        <div class="section-heading reveal">
+          <div>
+            <span class="section-number">05</span>
+            <p class="eyebrow" data-i18n="projectsEyebrow">选定作品</p>
+          </div>
+          <h2 id="projects-title" data-i18n="projectsTitle">项目与构建</h2>
+        </div>
+
+        <div class="timeline project-list" id="projectTimeline"></div>
+      </section>
+
+      <section class="contact section" id="contact" aria-labelledby="contact-title">
+        <div class="contact-side reveal">
+          <span class="section-number">06</span>
+          <span data-i18n="contactAside">下一次对话，<br />可以从这里开始。</span>
+        </div>
+
+        <div class="contact-main">
+          <p class="eyebrow reveal" data-i18n="contactEyebrow">联系</p>
+          <h2 id="contact-title" class="reveal" data-i18n="contactTitle">一起做点有用的东西。</h2>
+          <a class="email-link reveal" href="mailto:zhengweize2017@outlook.com">
+            zhengweize2017<br class="email-break" />@outlook.com
+            <svg viewBox="0 0 32 32" aria-hidden="true">
+              <path d="M7 25 25 7M11 7h14v14" />
+            </svg>
+          </a>
+
+          <div class="contact-actions reveal">
+            <a class="download-link" href="./assets/CV_cn.docx" download data-resume-link>
+              <span data-i18n="downloadCv">下载中文简历</span>
+              <span aria-hidden="true">↓</span>
+            </a>
+            <a class="plain-link" href="tel:+8613062879798">
+              <span data-i18n="phoneChina">中国</span>
+              <span>+86 130 6287 9798</span>
+            </a>
+            <a class="plain-link" href="tel:+447356087071">
+              <span data-i18n="phoneUK">英国</span>
+              <span>+44 7356 087071</span>
+            </a>
+            <a class="plain-link" href="tel:+15302204248">
+              <span data-i18n="phoneUS">美国</span>
+              <span>+1 530 220 4248</span>
+            </a>
+            <a
+              class="plain-link github-contact"
+              href="https://github.com/W1chik2nd"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span class="github-label">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M12 2.6a9.6 9.6 0 0 0-3 18.72c.48.09.66-.21.66-.46v-1.68c-2.7.59-3.27-1.15-3.27-1.15-.44-1.13-1.08-1.43-1.08-1.43-.88-.6.07-.59.07-.59.97.07 1.48 1 1.48 1 .87 1.48 2.27 1.05 2.83.8.09-.62.34-1.05.61-1.29-2.15-.24-4.42-1.08-4.42-4.74 0-1.05.38-1.9 1-2.57-.1-.25-.43-1.22.1-2.54 0 0 .81-.26 2.64.98A9.2 9.2 0 0 1 12 7.32a9.2 9.2 0 0 1 2.4.32c1.83-1.24 2.64-.98 2.64-.98.53 1.32.2 2.29.1 2.54.62.67 1 1.52 1 2.57 0 3.68-2.28 4.5-4.44 4.74.35.3.66.89.66 1.8v2.55c0 .25.18.55.67.46A9.6 9.6 0 0 0 12 2.6Z"
+                  />
+                </svg>
+                GitHub
+              </span>
+              <span>@W1chik2nd ↗</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© <span id="year">2026</span> Weize Zheng</span>
+      <span data-i18n="footerNote">以克制构建，以好奇前行。</span>
+      <a href="#top" data-i18n="backTop">返回顶部 ↑</a>
+    </footer>
+
+    <noscript>此网站需要 JavaScript 才能切换语言并显示经历内容。</noscript>
+  </body>
+</html>
