@@ -11,7 +11,6 @@ const translations = {
     heroLocation: "上海 · 利兹",
     firstName: "郑",
     lastName: "维则",
-    heroStatus: "利兹大学计算机科学本科在读",
     heroStatement:
       "我对人工智能与软件工程方向的工作充满兴趣，希望把严谨的工程方法用于创造可靠、真正有用的产品。",
     interestTravel: "旅行",
@@ -24,7 +23,7 @@ const translations = {
     profileBody:
       "我目前就读于利兹大学计算机科学专业。我的实践横跨 ARM 嵌入式平台上的实时目标跟踪、AI 语音识别原型，以及全栈航班预订系统。我喜欢把问题拆开、把团队组织起来，再让方案稳定地运行。",
     focusLabel: "当前关注",
-    focusValue: "嵌入式 AI / 视觉",
+    focusValue: "软件工程 / AI",
     languagesLabel: "语言",
     languagesValue: "中文 / English",
     availableLabel: "状态",
@@ -38,9 +37,10 @@ const translations = {
     present: "至今",
     leeds: "利兹大学",
     degree: "计算机科学理学学士",
-    gpa: "GPA 3.7 / 4.0 · 英国二等一学位水平",
+    gpa: "预计均分 70 / 100 · 一等学位",
     courseLabel: "课程选择",
-    courseList: "数据结构 · 算法 · 操作系统 · 计算机体系结构 · 并行计算 · 软件工程",
+    courseList:
+      "数据结构 · 算法 · 离散数学 · 操作系统 · 计算机体系结构 · 并行计算 · 软件工程 · 程序设计（C、Python、Kotlin）· 计算机图形 · 高性能计算 · 神经网络与深度学习",
     toolkitLabel: "技术工具箱",
     contactAside: "下一次对话，<br />可以从这里开始。",
     contactEyebrow: "联系",
@@ -53,6 +53,8 @@ const translations = {
     backTop: "返回顶部 ↑",
     expand: "展开详情",
     collapse: "收起详情",
+    themeToDark: "切换至深色模式",
+    themeToLight: "切换至浅色模式",
     resumePath: "./assets/CV_cn.docx",
   },
   en: {
@@ -67,7 +69,6 @@ const translations = {
     heroLocation: "Shanghai · Leeds",
     firstName: "Weize",
     lastName: "Zheng",
-    heroStatus: "BSc Computer Science student at the University of Leeds",
     heroStatement:
       "I am deeply interested in artificial intelligence and software engineering, and in applying rigorous engineering to build reliable products that are genuinely useful.",
     interestTravel: "Travel",
@@ -80,7 +81,7 @@ const translations = {
     profileBody:
       "I study Computer Science at the University of Leeds. My work spans real-time object tracking on ARM embedded platforms, an AI speech-recognition prototype, and a full-stack flight booking system. I enjoy breaking down problems, aligning a team, and making the result run reliably.",
     focusLabel: "Current focus",
-    focusValue: "Embedded AI / Vision",
+    focusValue: "Software Engineering / AI",
     languagesLabel: "Languages",
     languagesValue: "English / 中文",
     availableLabel: "Status",
@@ -94,10 +95,10 @@ const translations = {
     present: "Present",
     leeds: "University of Leeds",
     degree: "BSc Computer Science",
-    gpa: "GPA 3.7 / 4.0 · 2:1 equivalent",
+    gpa: "Expected average 70 / 100 · First-Class honours",
     courseLabel: "Selected coursework",
     courseList:
-      "Data Structures · Algorithms · Operating Systems · Computer Architecture · Parallel Computing · Software Engineering",
+      "Data Structures · Algorithms · Discrete Mathematics · Operating Systems · Computer Architecture · Parallel Computing · Software Engineering · Programming (C, Python, Kotlin) · Computer Graphics · High Performance Computing · Neural Networks & Deep Learning",
     toolkitLabel: "Technical toolkit",
     contactAside: "The next conversation<br />can start here.",
     contactEyebrow: "Contact",
@@ -110,6 +111,8 @@ const translations = {
     backTop: "Back to top ↑",
     expand: "Expand details",
     collapse: "Collapse details",
+    themeToDark: "Switch to dark mode",
+    themeToLight: "Switch to light mode",
     resumePath: "./assets/CV_en.docx",
   },
 };
@@ -229,10 +232,37 @@ const projects = {
 };
 
 const languageSwitch = document.querySelector(".language-switch");
+const themeSwitch = document.querySelector(".theme-switch");
+const themeColor = document.querySelector('meta[name="theme-color"]');
 const experienceTimeline = document.querySelector("#experienceTimeline");
 const projectTimeline = document.querySelector("#projectTimeline");
 const resumeLink = document.querySelector("[data-resume-link]");
-let activeLanguage = localStorage.getItem("preferred-language") === "en" ? "en" : "zh";
+const savedLanguage = localStorage.getItem("preferred-language");
+const deviceLanguage = navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en";
+let activeLanguage =
+  savedLanguage === "zh" || savedLanguage === "en" ? savedLanguage : deviceLanguage;
+const colorSchemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+const savedTheme = localStorage.getItem("preferred-theme");
+let activeTheme = savedTheme === "dark" || savedTheme === "light"
+  ? savedTheme
+  : colorSchemeQuery.matches
+    ? "dark"
+    : "light";
+
+function applyTheme(theme, persist = false) {
+  activeTheme = theme;
+  document.documentElement.dataset.theme = theme;
+  themeColor.content = theme === "dark" ? "#171815" : "#ffffff";
+
+  const label =
+    theme === "dark"
+      ? translations[activeLanguage].themeToLight
+      : translations[activeLanguage].themeToDark;
+  themeSwitch.setAttribute("aria-label", label);
+  themeSwitch.title = label;
+
+  if (persist) localStorage.setItem("preferred-theme", theme);
+}
 
 function renderTimeline(container, items, lang) {
   container.innerHTML = items
@@ -279,7 +309,7 @@ function renderTimeline(container, items, lang) {
   });
 }
 
-function applyLanguage(lang) {
+function applyLanguage(lang, persist = false) {
   activeLanguage = lang;
   const copy = translations[lang];
 
@@ -296,14 +326,32 @@ function applyLanguage(lang) {
   });
 
   resumeLink.href = copy.resumePath;
+  applyTheme(activeTheme);
   renderTimeline(experienceTimeline, experience[lang], lang);
   renderTimeline(projectTimeline, projects[lang], lang);
   observeReveals();
-  localStorage.setItem("preferred-language", lang);
+  if (persist) localStorage.setItem("preferred-language", lang);
 }
 
 languageSwitch.addEventListener("click", () => {
-  applyLanguage(activeLanguage === "zh" ? "en" : "zh");
+  applyLanguage(activeLanguage === "zh" ? "en" : "zh", true);
+});
+
+themeSwitch.addEventListener("click", () => {
+  applyTheme(activeTheme === "dark" ? "light" : "dark", true);
+});
+
+colorSchemeQuery.addEventListener("change", (event) => {
+  if (!localStorage.getItem("preferred-theme")) {
+    applyTheme(event.matches ? "dark" : "light");
+  }
+});
+
+window.addEventListener("languagechange", () => {
+  if (!localStorage.getItem("preferred-language")) {
+    const language = navigator.language.toLowerCase().startsWith("zh") ? "zh" : "en";
+    applyLanguage(language);
+  }
 });
 
 let revealObserver;
@@ -347,4 +395,5 @@ const sectionObserver = new IntersectionObserver(
 
 sections.forEach((section) => sectionObserver.observe(section));
 document.querySelector("#year").textContent = new Date().getFullYear();
+applyTheme(activeTheme);
 applyLanguage(activeLanguage);

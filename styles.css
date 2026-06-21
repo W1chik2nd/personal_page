@@ -6,10 +6,22 @@
   --muted: oklch(47% 0.006 265);
   --line: oklch(86% 0.004 265);
   --signal: oklch(50% 0.16 30);
+  --grid-line: color-mix(in oklch, var(--ink) 3%, transparent);
   --display: "Iowan Old Style", "Palatino Linotype", "Songti SC", "STSong", serif;
   --body: "Avenir Next", Avenir, "PingFang SC", "Hiragino Sans GB", sans-serif;
   --page-x: clamp(1.25rem, 4.8vw, 5.5rem);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: oklch(20% 0.012 100);
+  --paper-deep: oklch(17% 0.01 100);
+  --ink: oklch(91% 0.012 85);
+  --muted: oklch(68% 0.012 85);
+  --line: oklch(32% 0.012 100);
+  --signal: oklch(72% 0.14 45);
+  --grid-line: color-mix(in oklch, var(--ink) 4%, transparent);
 }
 
 * {
@@ -25,8 +37,8 @@ body {
   margin: 0;
   color: var(--ink);
   background:
-    linear-gradient(90deg, transparent calc(100% - 1px), color-mix(in oklch, var(--ink) 3%, transparent) 1px),
-    #fff;
+    linear-gradient(90deg, transparent calc(100% - 1px), var(--grid-line) 1px),
+    var(--paper);
   background-size: clamp(4.5rem, 10vw, 9rem) 100%;
   font-family: var(--body);
   font-size: 1rem;
@@ -84,7 +96,8 @@ button {
   gap: clamp(0.8rem, 2vw, 1.5rem);
 }
 
-.github-link {
+.social-link,
+.theme-switch {
   display: inline-flex;
   width: 44px;
   height: 44px;
@@ -92,16 +105,50 @@ button {
   justify-content: center;
 }
 
-.github-link svg,
-.github-label svg {
+.social-link svg,
+.github-label svg,
+.linkedin-label svg {
   width: 1.15rem;
   fill: currentColor;
   transition: transform 350ms var(--ease);
 }
 
-.github-link:hover svg,
-.github-contact:hover svg {
+.social-link:hover svg,
+.github-contact:hover svg,
+.linkedin-contact:hover svg {
   transform: rotate(-8deg) scale(1.08);
+}
+
+.theme-switch {
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.theme-icon {
+  position: absolute;
+  width: 1.15rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.35;
+  transition:
+    opacity 250ms ease,
+    transform 400ms var(--ease);
+}
+
+.theme-icon--sun,
+html[data-theme="dark"] .theme-icon--moon {
+  opacity: 0;
+  transform: rotate(-35deg) scale(0.65);
+}
+
+html[data-theme="dark"] .theme-icon--sun {
+  opacity: 1;
+  transform: rotate(0) scale(1);
 }
 
 .wordmark {
@@ -257,17 +304,6 @@ html[lang="en"] .hero-roman {
   gap: 1rem;
   padding-top: 1.4rem;
   border-top: 1px solid var(--ink);
-}
-
-.hero-status {
-  margin: 0;
-  color: var(--signal);
-  font-family: var(--body);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  line-height: 1.5;
-  text-transform: uppercase;
 }
 
 .hero-interests {
@@ -618,7 +654,7 @@ html[lang="en"] .hero-roman {
 .education {
   display: grid;
   gap: clamp(4rem, 10vw, 9rem);
-  background: #fff;
+  background: var(--paper-deep);
 }
 
 .education-lead {
@@ -801,10 +837,19 @@ html[lang="en"] .hero-roman {
   margin-top: 2rem;
 }
 
-.github-label {
+.github-label,
+.linkedin-label {
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
+}
+
+.university-identity img {
+  transition: filter 250ms ease;
+}
+
+html[data-theme="dark"] .university-identity img {
+  filter: invert(0.86) sepia(0.08);
 }
 
 .download-link,
